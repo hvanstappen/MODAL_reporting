@@ -7,10 +7,15 @@ from datetime import datetime  # For enrichment date
 # from create_folder_hierarchy import create_folder_records
 
 
+database_name = "MODAL_data"  # Replace with your database name
+collection_name = "collection_name"  # Replace with your collection name
+
+
 # Connect to MongoDB
 client = MongoClient("mongodb://localhost:27017/")  # Adjust if necessary
-db = client["MODAL_testdata"]  # Replace with your actual database name
-collection = db["LH_UitgeverijVrijdag"]  # Replace with your actual collection name
+db = client[database_name]
+collection = db[collection_name]
+
 
 def escape_regex_chars(text):
     """Escape special regex characters in a string."""
