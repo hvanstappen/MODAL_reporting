@@ -33,7 +33,7 @@ def load_documents_from_mongo(db_name, collection_name):
     db = client[db_name]
     collection = db[collection_name]
 
-    documents = list(collection.find({}))
+    documents = list(collection.find({})) # change query if needed
     client.close()
     return documents
 

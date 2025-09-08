@@ -14,9 +14,9 @@ item_name = enrichment_type
 name_filter = "emmerechts"
 
 # MongoDB connection details
+DB_NAME = "MODAL_data"
+COLLECTION_NAME = "collection_name"
 mongo_uri = "mongodb://localhost:27017/"
-DB_NAME = "MODAL_testdata"
-COLLECTION_NAME = "LH_HH_71_Kristien_Hemmerechts"
 
 # Connect to MongoDB
 client = pymongo.MongoClient(mongo_uri)
