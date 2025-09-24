@@ -16,8 +16,8 @@ def extract_field(enrichments, field_name):
                 return [value]
             else:
                 return []
-    # return [] if field_name.startswith("NER") or field_name in ["TOPIC_representation", "TOPIC_label"] else ""
-    return [] if field_name.startswith("NER") or field_name in ["TOPIC_representation", "TOPIC_label"] else ""
+    # return [] if field_name.startswith("NER") or field_name in ["Topic_representation", "Topic_label"] else ""
+    return [] if field_name.startswith("NER") or field_name in ["Topic_representation", "Topic_label"] else ""
 
 
 def build_hierarchy():
@@ -40,8 +40,8 @@ def build_hierarchy():
             "NER_organisations": extract_field(enrichments, "NER_organisations"),
             "NER_locations": extract_field(enrichments, "NER_locations"),
             "NER_miscellaneous": extract_field(enrichments, "NER_miscellaneous"),
-            "TOPIC_representation": extract_field(enrichments, "TOPIC_representation"),
-            "TOPIC_label": extract_field(enrichments, "TOPIC_label"),
+            "Topic_representation": extract_field(enrichments, "Topic_representation"),
+            "Topic_label": extract_field(enrichments, "Topic_label"),
             "summary": extract_field(enrichments, "summary"),
             "sender_email": doc.get("sender_email", []),
             "sender_name": doc.get("sender_name", []),
@@ -86,7 +86,7 @@ def generate_html_structure(hierarchy, metadata_map, path="", level=0, skip_leve
             ner_organisations = safe_join(metadata.get('NER_organisations', []))
             ner_locations = safe_join(metadata.get('NER_locations', []))
             ner_miscellaneous = safe_join(metadata.get('NER_miscellaneous', []))
-            topic_representation = safe_join(metadata.get('TOPIC_representation', []))
+            topic_representation = safe_join(metadata.get('Topic_representation', []))
             sender_email = safe_join(metadata.get('sender_email', []))
             sender_name = safe_join(metadata.get('sender_name', []))
             recipient_email = safe_join(metadata.get('recipient_email', []))
@@ -119,7 +119,7 @@ def generate_html_structure(hierarchy, metadata_map, path="", level=0, skip_leve
             summary = f"""
                 <div class='metadata'>
                     <div><strong>Summary:</strong> {safe_join(metadata.get('summary', []))}</div>
-                    <div><strong>Topic Label:</strong> {safe_join(metadata.get('TOPIC_label', []))}</div>
+                    <div><strong>Topic Label:</strong> {safe_join(metadata.get('Topic_label', []))}</div>
                     <div><italic>Path:</italic> {html.escape(show_path)}</div>
                     <div class='ner-info'>
                         {ner_info}
@@ -205,7 +205,7 @@ def generate_html():
     </html>
     """
 
-    html_filename = f"/home/henk/DATABLE/1_Projecten/2024_MODAL/3_Data/browser/{collection_name}_structure.html"
+    html_filename = f"data/browser_files/{collection_name}_browser.html"
     os.makedirs(os.path.dirname(html_filename), exist_ok=True)
     with open(html_filename, "w", encoding="utf-8") as file:
         file.write(html_content)

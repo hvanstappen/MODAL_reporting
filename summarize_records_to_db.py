@@ -77,8 +77,8 @@ def summarize_records():
         NER_organisations = []
         NER_locations = []
         NER_miscellaneous = []
-        TOPIC_representation = []
-        TOPIC_label = []
+        Topic_representation = []
+        Topic_label = []
 
         for doc in docs:
             enrichments = doc.get("enrichments", [])
@@ -96,10 +96,10 @@ def summarize_records():
             NER_miscellaneous = NER_miscellaneous + ner_miscellaneous
 
             topic_representation = extract_ner_data(enrichments, "Topic_representation")
-            TOPIC_representation = TOPIC_representation + topic_representation
+            Topic_representation = Topic_representation + topic_representation
 
             topic_label = extract_ner_data(enrichments, "Topic_label")
-            TOPIC_label = TOPIC_label + topic_label
+            Topic_label = Topic_label + topic_label
 
 
 
@@ -112,10 +112,10 @@ def summarize_records():
         NER_locations_top20 = NER_locations_counter.most_common(20)
         NER_miscellaneous_counter = Counter(NER_miscellaneous)
         NER_miscellaneous_top20 = NER_miscellaneous_counter.most_common(20)
-        TOPIC_representation_counter = Counter(TOPIC_representation)
-        TOPIC_representation_top20 = TOPIC_representation_counter.most_common(20)
-        TOPIC_label_counter = Counter(TOPIC_label)
-        TOPIC_label_top20 = TOPIC_label_counter.most_common(20)
+        Topic_representation_counter = Counter(Topic_representation)
+        Topic_representation_top20 = Topic_representation_counter.most_common(20)
+        Topic_label_counter = Counter(Topic_label)
+        Topic_label_top20 = Topic_label_counter.most_common(20)
 
 
                 # Prepare the enrichment record
@@ -126,8 +126,8 @@ def summarize_records():
             "NER_organisations": [organisation for organisation, _ in NER_organisations_top20],
             "NER_locations": [location for location, _ in NER_locations_top20],
             "NER_miscellaneous": [miscellaneous for miscellaneous, _ in NER_miscellaneous_top20],
-            "TOPIC_representation": [representation for representation, _ in TOPIC_representation_top20],
-            "TOPIC_label": [label for label, _ in TOPIC_label_top20]
+            "TOPIC_representation": [representation for representation, _ in Topic_representation_top20],
+            "TOPIC_label": [label for label, _ in Topic_label_top20]
         }
 
         # Append the enrichment to the `enrichments` array
